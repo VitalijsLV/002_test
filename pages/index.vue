@@ -15,7 +15,7 @@
 			<p>Database/Postgres</p>
 			<p>Deploy</p>
 			<p>Git</p>
-			<p>other</p>
+			<p>other...</p>
 		</div>
 	</div>
 </template>
