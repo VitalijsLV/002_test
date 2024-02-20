@@ -11,8 +11,10 @@
 		<div class="learnDiv">
 			<p>Nuxt3</p>
 			<p>Docker</p>
-			<p>Database</p>
+			<p>Kubernetes</p>
+			<p>Database/Postgres</p>
 			<p>Deploy</p>
+			<p>Git</p>
 		</div>
 	</div>
 </template>
