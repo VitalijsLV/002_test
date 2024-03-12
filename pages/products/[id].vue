@@ -1,4 +1,7 @@
 <script setup>
+	//const nuxt = useNuxtApp()
+	//console.log(nuxt)
+	
 	const route = useRoute()
 	console.log(route.params.id)
 	

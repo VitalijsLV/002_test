@@ -15,6 +15,7 @@
 			<p>Database/Postgres</p>
 			<p>Deploy</p>
 			<p>Git</p>
+			<p>SCSS</p>
 			<p>other</p>
 			<p>other...</p>
 		</div>
@@ -27,5 +28,16 @@
 	}
 	.learnDiv p{
 		margin:5px 20px 5px 0;
+		background-color:rgba(100,50,20,0.1);
 	}
+	
+	/*$variableScss1:rgba(100,50,20,0.1);
+	.learnDiv{
+		display:inline-flex;
+		
+		p{
+			margin:5px 20px 5px 0;
+			background-color:variableScss1;
+		}
+	}*/
 </style>

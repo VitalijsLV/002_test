@@ -1,0 +1,21 @@
+@forward "colors";
+@use "colors" as c;
+
+@forward "mixins";
+@use "mixins" as m;
+
+
+p {
+	@include m.p-border-all;
+}
+
+/*
+*{
+	background-color: j.$bgColorTextFirst;
+}
+*/
+
+body{
+	//background-color: c.$colorTextFirst;
+	background-color: c.$bgColorTextFirst;
+}

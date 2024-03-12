@@ -11,12 +11,12 @@
 </template>
 
 
-<style>
+<style lang="scss">
 	html, body{
 		margin:0;
 		padding:0;
 	}
-	body{
+	/*body{
 		background-color:rgba(20,220,50,0.03);
-	}
+	}*/
 </style>

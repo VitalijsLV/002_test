@@ -1,6 +1,12 @@
 <script setup lang="ts">
 	const { data } = await useLazyFetch('/api/users')
 	//const { data } = await useFetch('/api/users')
+	
+	const pDynamicStyles = ref(0)
+	pDynamicStyles.value = [
+		'lightblue',
+		'lightgreen'
+	]
 </script>
 
 
@@ -13,16 +19,15 @@
 				<IconsArrowDownPlus />
 				<div class="divWrapForData">
 					<p 
-						class="p1"
-						v-for="(d,i) in data" :key="d"
+						class="pM"
+						v-for="d,k,i in data" :key="d"
+						:style="{ color: pDynamicStyles[i] }"
 					>
-						key : {{ i }}
-					</p>
-					<p 
-						class="p2"
-						v-for="(d,i) in data" :key="d"
-					>
-						value : {{ d }}
+						key : {{ k }}
+						<br/>
+						value : {{ d[0] }}
+						<br/>
+						from : {{ d[1] }}
 					</p>
 				</div>
 			</div>
@@ -52,7 +57,7 @@
 			padding: 5px 10px;
 			border:2px dotted gold;
 		}
-			.p1, .p2{
+			.pM{
 				margin:0;
 				padding:0;
 			}
@@ -61,5 +66,8 @@
 			}
 			.p2{
 				color:lightgreen;
+			}
+			.p3{
+				color:#433443;
 			}
 </style>
