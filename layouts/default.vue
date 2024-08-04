@@ -6,14 +6,14 @@
 <template>
 	<div class="wr">
 		<ul>
-			<li><NuxtLink to="/">Main-page-X</NuxtLink></li>
+			<!--<li><NuxtLink to="/">Main-page-X</NuxtLink></li>
 			<li><NuxtLink to="/about">About-page-X</NuxtLink></li>
 			<li><NuxtLink to="/auth">Auth-page-X</NuxtLink></li>
 			<li><NuxtLink to="/payment">Payment-page-X</NuxtLink></li>
 			<li><NuxtLink to="/users">Users-page-X</NuxtLink></li>
 			<li><NuxtLink to="/products">Products-page-X</NuxtLink></li>
-			<!--<li><NuxtLink :href=url5>random-page-X</NuxtLink></li>-->
-			<li><NuxtLink to="/products/nextstep">nextstep-page-X</NuxtLink></li>
+			
+			<li><NuxtLink to="/products/nextstep">nextstep-page-X</NuxtLink></li>-->
 		</ul>
 	</div>
 </template>

@@ -11,15 +11,18 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0",
     "nuxt": "^3.8.1",
     "sass": "^1.71.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "description": "Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "abbrev": "^1.1.1",
     "acorn": "^8.11.2",
     "agent-base": "^7.1.0",
@@ -61,7 +64,6 @@
     "cacache": "^18.0.0",
     "camelcase": "^6.3.0",
     "caniuse-api": "^3.0.0",
-    "caniuse-lite": "^1.0.30001562",
     "chalk": "^5.3.0",
     "chokidar": "^3.5.3",
     "chownr": "^2.0.0",
@@ -139,6 +141,7 @@
     "escape-string-regexp": "^5.0.0",
     "estree-walker": "^2.0.2",
     "etag": "^1.8.1",
+    "eventsource": "^2.0.2",
     "execa": "^7.2.0",
     "exponential-backoff": "^3.1.1",
     "externality": "^1.0.2",
@@ -321,6 +324,7 @@
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "picomatch": "^2.3.1",
+    "pinia": "^2.1.7",
     "pkg-types": "^1.0.3",
     "postcss": "^8.4.31",
     "postcss-calc": "^9.0.1",
@@ -352,6 +356,7 @@
     "postcss-svgo": "^6.0.0",
     "postcss-unique-selectors": "^6.0.0",
     "postcss-value-parser": "^4.2.0",
+    "postgres": "^3.4.4",
     "pretty-bytes": "^6.1.1",
     "proc-log": "^3.0.0",
     "process-nextick-args": "^2.0.1",
@@ -498,6 +503,14 @@
     "zhead": "^2.2.4",
     "zip-stream": "^5.0.1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "VL",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/VitalijsLV/nuxt3startV.1.0.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VitalijsLV/nuxt3startV.1.0.0/issues"
+  },
+  "homepage": "https://github.com/VitalijsLV/nuxt3startV.1.0.0#readme"
 }

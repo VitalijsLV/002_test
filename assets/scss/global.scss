@@ -15,7 +15,16 @@ p {
 }
 */
 
+ul, li{
+	margin:0;
+	padding:0;
+}
+
+li{
+	list-style-type: none;
+}
+
 body{
 	//background-color: c.$colorTextFirst;
-	background-color: c.$bgColorTextFirst;
+	//background-color: c.$bgColorTextFirst;
 }
