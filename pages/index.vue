@@ -19,12 +19,20 @@
 	})
 	
 	
+	
+	
+	
+	
+	let tabs1 = '\t'
+	let tabs2 = '\u00A0'
+	
+	let aprakstsValue = `Lācis uz zelta bumbas(Rīgas porcelāns), ļoti labā stāvoklī.   ${tabs2}   Lācis uz zelta bumbas(Rīgas porcelāns), ir lietošanas pazīmes.   ${tabs2}   Lācis uz oranžās bumbas(Rīgas porcelāns), ar defektu pie pamatnes.   ${tabs2}   Lācis uz zilās bumbas(Rīgas porcelāns), labā stāvoklī.   ${tabs2}   Lācis uz zaļās bumbas(Rīgas porcelāns), labā stāvoklī.   ${tabs2}   Lācis uz sarkanās bumbas(Kuzņecovs), labā stāvoklī.`
 	const blocksApix1 = ref([1, 2, 3, 4, 5, '', ':)', 'pre'].length)
 	
 	//if Skaits:null? don't show word 'Skaits'
 	//database, bilde, apraksts, stāvoklis, skaits, cena.
 	const fakeApiDatax1 = ref({
-		Apraksts: 'Lācis uz zelta bumbas(Rīgas porcelāns), ļoti labā stāvoklī. Lācis uz zelta bumbas(Rīgas porcelāns), ir lietošanas pazīmes. Lācis uz oranžās bumbas(Rīgas porcelāns), ar defektu pie pamatnes. Lācis uz zilās bumbas(Rīgas porcelāns), labā stāvoklī. Lācis uz zaļās bumbas(Rīgas porcelāns), labā stāvoklī. Lācis uz sarkanās bumbas(Kuzņecovs), labā stāvoklī.', 
+		Apraksts: aprakstsValue,		
 		Stāvoklis: 'Labā stāvoklī.',
 		Skaits: null,
 		Cena: null,
@@ -36,29 +44,136 @@
 		'zirdzins':15
 	})
 	
-	//console.log(dataSSE)
+	let aroundStart = "«"
+	let aroundEnd = "»"
+	//let aprakstsValue2 = `Lācis uz zelta bumbas(Rīgas porcelāns), ļoti labā stāvoklī. Lācis uz zelta bumbas(Rīgas porcelāns), ir lietošanas pazīmes. Lācis uz oranžās bumbas(Rīgas porcelāns), ar defektu pie pamatnes. Lācis uz zilās bumbas(Rīgas porcelāns), labā stāvoklī. Lācis uz zaļās bumbas(Rīgas porcelāns), labā stāvoklī. Lācis uz sarkanās bumbas(Kuzņecovs), labā stāvoklī.`
+	let aprakstsValue2 = `Продукт1 олвпо лпоук пуодл кппуд. Продукт2 олвпо лпоук пуодл кппуд. Продукт3 олвпо лпоук пуодл кппуд. Продукт4 олвпо лпоук пуодл кппуд. Продукт5 олвпо лпоук пуодл кппуд.`
+	
+	const fakeApiDatax3 = ref({
+		Описание: aprakstsValue2,
+		null: null,
+		Количество: 5,
+		Цена: '555$',
+	})
+	
+	
+	
+	const name = ref('')
+	const surname = ref('')
+	
+	let resName = ref('')
+	let resSurname = ref('')
+
+	async function submitForm1() {
+		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm1', {
+			method: 'post',
+			//body: { test: 123 }
+			body: { test: 123, name: name.value, surname: surname.value }
+		}).then(results => {
+			console.log(results)
+				resName.value = results.body.name
+				resSurname.value = results.body.surname
+			return results
+			})
+			.catch(error => {
+				console.log(error)
+			});
+	}
+	
+	///////
+	
+	const offer = ref('')
+	const phone = ref('')
+	const domainBuyerName = ref('')
+	
+	let resOffer = ref('')
+	let resPhone = ref('')
+	let resDomainBuyerName = ref('')
+
+	async function submitForm2() {
+		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm2', {
+			method: 'post',
+			//body: { test: 234 }
+			body: { 
+				test: 234, 
+				offer: offer.value, 
+				phone: phone.value, 
+				domainBuyerName: domainBuyerName.value,
+			}
+		}).then(results => {
+			console.log(results)
+				resOffer.value = results.body.offer
+				resPhone.value = results.body.phone
+				resDomainBuyerName.value = results.body.domainBuyerName
+			return results
+			})
+			.catch(error => {
+				console.log(error)
+			});
+	}
 </script>
 
 <template>
 	<div>
-		<div style="display:flex; align-items:center; justify-content:center; margin:500px 200px; background-color:rgba(50,140,40,0.3); color:#233da1; border:1px solid blue; display:none;">
-			<p style="border:none; font-size:50px; padding:30px;">
-				Bez maksas palīdzēšu novērtēt dažādas senas porcelāna figūriņas, tās kuras daudziem stāv sekcijās un bija veidotas Latvijā. 
-				Par noteiktu summu vai procentiem varu palīdzēt Jums tās realizēt par augstu cenu.
-			</p>
+		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
+			
+			<div style="margin-right:4px;min-width:730px; display:flex; flex-flow:wrap row; border:4px dotted gray;">
+				<form method="POST" style="margin:20px;">
+					<label for="fname">First name:</label><br/>
+					<input type="text" id="fname" v-model="name" placeholder="Adam"/><br/>
+					<label for="lname">Last name:</label><br/>
+					<input type="text" id="lname" v-model="surname" placeholder="Godis"/><br/><br/>
+						<input @click.prevent="submitForm1" type="submit" value="Nosūtīt"/>
+				</form>
+				
+				<br/><br/><br/>
+				
+				<button @click="submitForm1" style="margin:20px; display:flex; align-items:center; height:50px;">SubmitForm1</button>
+				<button @click="submit" style="margin:20px; display:flex; align-items:center; height:50px;">Submit</button>
+				
+				<br/><br/><br/>
+				
+				<div style="display:flex; flex-flow: wrap column;">
+					<p>Name: {{ resName ? resName : '--' }}</p>
+					<p>Surname: {{ resSurname ? resSurname : '--' }}</p>
+				</div>
+			</div>
+			
+			
+			<div style="display:flex; flex-flow:wrap row; flex:1 0 auto; border:4px dotted lightblue;">
+			
+				<form method="POST" style="margin:10px;">
+					<input type="text" v-model="offer" placeholder="Your price offer"/><br/>
+					<br/>
+					<input type="text" v-model="phone" placeholder="Your phone number"/><br/>
+					<br/>
+					<input type="text" v-model="domainBuyerName" placeholder="Your Name"/><br/>
+					<input @click.prevent="submitForm2" type="submit" value="Nosūtīt"/>
+				</form>
+				
+				
+				<br/><br/><br/>
+				
+				
+				<br/><br/><br/>
+				
+				<div style="display:flex; flex-flow: wrap column;">
+					<p>offer: {{ resOffer ? resOffer : '--' }}</p>
+					<p>Phone: {{ resPhone ? resPhone : '--' }}</p>
+					<p>Name: {{ resDomainBuyerName ? resDomainBuyerName : '--' }}</p>
+				</div>
+				
+			</div>
+			
 		</div>
 		
 		
 		<div style="display:flex; flex-flow:wrap row; align-items:center; justify-content:space-between;">
-			<div class="div-wrapper--sse_data__date">
-				<p>sseDate: {{ sseDate }}</p>
-			</div>
-			<div class="div-wrapper--sse_data__time">
-				<p>sseTime: {{ sseTime }}</p>
-			</div>
+			<SseDate />
+			
+			<SseTimeNow />
 			
 			<div class="div-wrapper--sse_data__price">
-				<!--<p>ssePrice: {{ ssePrice }}</p>-->
 				<p 
 					v-for="(value, key, index) in fakeApiDatax2" 
 					:key="index"
@@ -74,10 +189,6 @@
 		</div>
 		
 		
-		<!--<SseDateComponent />-->
-		
-		<!--<SseTimeComponent />-->
-		
 		<!-- <div style="display:inline-flex;">
 		&nbsp;&nbsp;&nbsp;
 		<NuxtLink to="/">Main-page-X</NuxtLink>
@@ -92,20 +203,17 @@
 		<br/>
 		
 		<div class="sseWrapper">
-			<div class="leftSideMenu">
+			
+			<!--<div class="leftSideMenu">
 				<p>::A::</p>
 				<p>::B::</p>
 				<p>::C::</p>
 				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-				<p>::D::</p>
-			</div>
+			</div>-->
+			
+		
+		
+		
 			
 			<div class="blocksPhotoAndInfoWrapper">
 				<div class="blockPhotoAndInfoWrapper">
@@ -118,7 +226,9 @@
 							:key="index"
 							class="pp"
 						>
-							<span style="color:#666;">{{ key }}</span>: &nbsp;&nbsp; {{ value ? value : '--'}}
+							<span style="color:#666;">{{ key }}</span>: 
+							&nbsp;&nbsp; 
+							<span class="vx">{{ value ? value : '--'}}</span>
 						</p>
 					</div>
 				</div>
@@ -129,7 +239,7 @@
 					</div>
 					<div class="info">
 						<p 
-							v-for="(value, key, index) in fakeApiDatax1" 
+							v-for="(value, key, index) in fakeApiDatax3" 
 							:key="index"
 							class="pp"
 						>
@@ -143,86 +253,15 @@
 		
 		<br/>
 		
-		<div class="myProgressDiv">
-			<div class="learnDiv a">
-				<p>MySql</p>
-				<p>HTML5</p>
-				<p>CSS3</p>
-				<p>JavaScript</p>
-				<p>Vue</p>
-				<p>PSD to HTML5</p>
-				<p>Pinia</p>
-				<p>Git</p>
-				<p>GitHub</p>
-				<p>JSON</p>
-				<p>server-sent-events</p>
-				<p>other</p>
-			</div>
-			<div class="learnDiv b">
-				<p>Nuxt3</p>
-				<p>Docker</p>
-				<p>MySql</p>
-				<p>Git</p>
-				<p>GitHub</p>
-				<p>SCSS</p>
-				<p>JWT</p>
-				<p>Websocket</p>
-				<p>server-sent-events</p>
-				<p>Node</p>
-				<p>Pinia</p>
-				<p>other</p>
-			</div>
-			<div class="learnDiv c">
-				<p>Nuxt3</p>
-				<p>Docker</p>
-				<p>Kubernetes</p>
-				<p>Postgres</p>
-				<p>Deploy</p>
-				<p>JWT</p>
-				<p>PaymentSystem</p>
-				<p>other</p>
-			</div>
-		</div>
+		<MyPlusesAndMinusesDiv />
+		
+		<br/>
+		
+		<MyProgressDiv />
 	</div>
 </template>
 
 <style scoped>
-	.div-wrapper--sse_data__date{
-		display:flex;
-		flex-flow:wrap row;
-		align-items:center;
-		justify-content:center;
-		width:max-content;
-		height:max-content;
-		margin:10px;
-		padding:15px;
-		border:1px solid rgba(40,90,50,0.8);
-		background-color:rgba(170,40,20,0.1);
-	}
-	.div-wrapper--sse_data__date p{
-		padding: 12px 10px;
-		color: #fff;
-		background-color:rgba(40,90,50,0.8);
-	}
-	
-	.div-wrapper--sse_data__time{
-		display:flex;
-		flex-flow:wrap row;
-		align-items:center;
-		justify-content:center;
-		width:max-content;
-		height:max-content;
-		margin:10px;
-		padding:15px;
-		border:1px solid rgba(40,90,50,0.8);
-		background-color:rgba(170,40,20,0.1);
-	}
-	.div-wrapper--sse_data__time p{
-		padding: 12px 10px;
-		color: #fff;
-		background-color:rgba(40,90,50,0.8);
-	}
-	
 	.div-wrapper--sse_data__price{
 		display:flex;
 		flex-flow:wrap row;
@@ -350,44 +389,10 @@
 			border:none;
 			border-radius:7px;
 		}
-	
-	
-	.myProgressDiv{
-		display:flex;
-		flex-flow:wrap row; 
-		align-items:center;
-		justify-content:center;
-		margin:50px;
-		box-sizing:border-box;
-		background-color:rgba(30,30,30,0.05);
-		border:1px dotted yellow;
-	}
-	.learnDiv{
-		display:flex;
-		flex-flow:wrap row; 
-		align-items:center; 
-		justify-content:center;
-		margin: 20px; 
-		padding: 20px;
-		border:1px solid green; 
-		width: 330px;
-	}
-	.learnDiv p{
-		margin: 5px 20px 5px 0;
-		padding:3px 5px;
-		color:black;
-		background-color: rgba(100,50,20,0.1);
-		background-color:white;
-		border:none;
-		/*outline: 1px solid black;*/		
-	}
-	.a{
-		background-color:rgba(100,200,100,0.5);
-	}
-	.b{
-		background-color:rgba(100,100,200,0.5);
-	}
-	.c{
-		background-color:rgba(200,100,100,0.5);
+		
+	.vx{
+		white-space: pre-wrap;
+		white-space: pre-line;
+		white-space: break-spaces;
 	}
 </style>

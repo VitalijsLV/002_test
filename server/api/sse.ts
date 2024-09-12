@@ -7,9 +7,9 @@ export default defineEventHandler(async (event) => {
 
   let counter = 0; 
   let data = {
-	'date':`--`, 
-	'time':`--`,
-	'testManyPages':`--`
+	'date':'', 
+	'time':'',
+	'testManyPages':'',
   };
   
   event.node.res.write(`id: ${++counter}\n`);
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 	// const hour = minute * 60; 
 	// const day = hour * 24; 
 	// const year = day * 365;
-	function fnx3(){
+	function fn(){
 		let d = new Date();
 		let year = d.getFullYear();
 		let month = d.getMonth()+1;
@@ -39,5 +39,9 @@ export default defineEventHandler(async (event) => {
 		event.node.res.write(`id: ${++counter}\n`);
 		event.node.res.write(`data: ${JSON.stringify(data)}\n\n`);
 	}
-	setInterval(fnx3, 1000);
+	function intervalForfn(){
+		fn();
+		setTimeout(intervalForfn, 1000);
+	}
+	intervalForfn();
 })
